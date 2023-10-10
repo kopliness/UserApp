@@ -9,40 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e42c87e1-b2f4-4611-a2f8-5cfb7d8ed948" name="Changes" comment="added entities">
-      <change afterPath="$PROJECT_DIR$/UserApp.DAL/EFCore/UserAppDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserApp.DAL/EntityConfiguration/RoleConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserApp.DAL/EntityConfiguration/UserConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserApp.DAL/EntityConfiguration/UserRoleConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UserAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UserAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/UserApp.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/UserApp.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/Debug/net7.0/UserApp.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/Debug/net7.0/UserApp.API.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/Debug/net7.0/UserApp.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/Debug/net7.0/UserApp.API.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/UserApp.API.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.API/obj/rider.project.restore.info" afterDir="false" />
+    <list default="true" id="e42c87e1-b2f4-4611-a2f8-5cfb7d8ed948" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UserApp.Business/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/UserApp.Business.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/UserApp.Business.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/Debug/net7.0/UserApp.Business.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/Debug/net7.0/UserApp.Business.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/Debug/net7.0/UserApp.Business.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/Debug/net7.0/UserApp.Business.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/UserApp.Business.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserApp.Business/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Business/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.Common/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.Common/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/Entities/Role.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/Entities/Role.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/Entities/UserRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/Entities/UserRole.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/UserApp.DAL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/UserApp.DAL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/Debug/net7.0/UserApp.DAL.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/Debug/net7.0/UserApp.DAL.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/Debug/net7.0/UserApp.DAL.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/Debug/net7.0/UserApp.DAL.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/UserApp.DAL.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.DAL/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.DAL/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +133,7 @@
       <updated>1696498436001</updated>
       <workItem from="1696498438486" duration="26000" />
       <workItem from="1696498492547" duration="93000" />
-      <workItem from="1696498622939" duration="10578000" />
+      <workItem from="1696498622939" duration="14148000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <option name="closed" value="true" />
@@ -172,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696523336937</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added DbContext, configurations and first migration">
+      <option name="closed" value="true" />
+      <created>1696529126963</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696529126964</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +170,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Init project" />
     <MESSAGE value="added entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="added entities" />
+    <MESSAGE value="added DbContext, configurations and first migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="added DbContext, configurations and first migration" />
   </component>
 </project>

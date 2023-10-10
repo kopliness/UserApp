@@ -1,0 +1,14 @@
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\bin\Debug\net7.0\UserApp.DAL.deps.json
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\bin\Debug\net7.0\UserApp.DAL.runtimeconfig.json
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\bin\Debug\net7.0\UserApp.DAL.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\bin\Debug\net7.0\UserApp.DAL.pdb
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.csproj.AssemblyReference.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.AssemblyInfoInputs.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.AssemblyInfo.cs
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\refint\UserApp.DAL.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.pdb
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\UserApp.DAL.genruntimeconfig.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.DAL\obj\Debug\net7.0\ref\UserApp.DAL.dll

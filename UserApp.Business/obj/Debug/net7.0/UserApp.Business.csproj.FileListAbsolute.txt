@@ -1,0 +1,17 @@
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.Business.deps.json
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.Business.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.Business.pdb
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.csproj.AssemblyReference.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.AssemblyInfoInputs.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.AssemblyInfo.cs
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\refint\UserApp.Business.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.pdb
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\ref\UserApp.Business.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.DAL.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.DAL.pdb
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\obj\Debug\net7.0\UserApp.Business.csproj.CopyComplete
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.Common.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.Business\bin\Debug\net7.0\UserApp.Common.pdb
