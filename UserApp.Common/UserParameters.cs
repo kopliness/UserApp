@@ -23,7 +23,6 @@ public class UserParameters
             _pageSize = value;
         }
     }
-    [EnumDataType(typeof(OrderByOptions))]
     public string? OrderBy { get; set; }
     public string? Name { get; set; }
     
@@ -33,11 +32,4 @@ public class UserParameters
     public string? RoleName { get; set; }
 }
 
-public enum OrderByOptions
-{
-    Name,
-    Age,
-    Email,
-    RoleName
-}
 

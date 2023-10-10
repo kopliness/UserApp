@@ -1,5 +1,6 @@
 using BusinessLayer.DTO;
 using BusinessLayer.Services;
+using BusinessLayer.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using UserApp.Common;
@@ -11,10 +12,14 @@ namespace UserApp.API.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly UserValidator _userValidator;
+    private readonly UserParametersValidator _userParametersValidator;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, UserValidator userValidator, UserParametersValidator userParametersValidator)
     {
         _userService = userService;
+        _userValidator = userValidator;
+        _userParametersValidator = userParametersValidator;
     }
 
     [HttpGet]
@@ -24,6 +29,11 @@ public class UserController : ControllerBase
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters)
     {
+        var validationResult = _userParametersValidator.Validate(userParameters);
+            
+        if(!validationResult.IsValid)
+            return BadRequest(validationResult.Errors);
+        
         var users = await _userService.GetUsers(userParameters);
 
         return users;
@@ -49,6 +59,11 @@ public class UserController : ControllerBase
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> CreateUser([FromBody] UserCreateDto newUserCreateDto)
     {
+        var validationResult = _userValidator.Validate(newUserCreateDto);
+            
+        if(!validationResult.IsValid)
+            return BadRequest(validationResult.Errors);
+        
         var user = await _userService.CreateUser(newUserCreateDto);
         return Ok(user);
     }
@@ -83,6 +98,11 @@ public class UserController : ControllerBase
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserCreateDto newUserCreateDto)
     {
+        var validationResult = _userValidator.Validate(newUserCreateDto);
+            
+        if(!validationResult.IsValid)
+            return BadRequest(validationResult.Errors);
+        
         var user = await _userService.UpdateUser(id, newUserCreateDto);
 
         return Ok(user);
@@ -95,8 +115,8 @@ public class UserController : ControllerBase
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> DeleteUser(Guid id)
     {
-        await _userService.DeleteUser(id);
+        var user = await _userService.DeleteUser(id);
 
-        return Ok();
+        return Ok(user);
     }
 }

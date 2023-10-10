@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "V6GsYKqspziXzPBV9IbaL3jZTHnI7HrFXFZvGTf0pE0bix8D/asTXwvhMtZkPqSInH1IbIej5t7/AINRyE3QVw==",
+  "dgSpecHash": "pqpGyBxEu0U8/yyeg62DXJxpn/K4LW5clBMeoiuMEQ2qiyFE7LeRLzvKRSZpWCF7RorQlj4M6APONJCWuJwpRg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Vlad\\Documents\\Системное программирование\\Лаб 1\\UserAPI\\UserApp.Business\\UserApp.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vlad\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Vlad\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Vlad\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Vlad\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
+    "C:\\Users\\Vlad\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.7.1\\fluentvalidation.dependencyinjectionextensions.11.7.1.nupkg.sha512",
     "C:\\Users\\Vlad\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512",
     "C:\\Users\\Vlad\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\Vlad\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",

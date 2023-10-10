@@ -172,3 +172,6 @@ C:\Users\Vlad\Documents\Системное программирование\Ла
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\UserApp.Common.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\UserApp.Common.pdb
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
