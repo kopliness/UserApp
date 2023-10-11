@@ -67,6 +67,7 @@ public class UserController : ControllerBase
             return BadRequest(validationResult.Errors);
 
         var user = await _userService.CreateUser(newUserCreateDto);
+        
         return Ok(user);
     }
 

@@ -25,7 +25,7 @@ public class UserService : IUserService
 
     public async Task<List<UserReadDto>> GetUsers(UserParameters userParameters)
     {
-        _logger.LogInformation("GetUsers method called with UserParameters");
+        _logger.LogInformation("GetUsers method called with parameters: {UserParameters}", userParameters);
 
         IQueryable<User> users = _context.Users
             .Include(u => u.UserRoles)
@@ -75,7 +75,7 @@ public class UserService : IUserService
 
         var pagedUsers = (await users.ToPagedListAsync(userParameters.PageNumber, userParameters.PageSize)).ToList();
 
-        _logger.LogInformation("Returning users matching parameters");
+        _logger.LogInformation("Returning users matching parameters: {UserParameters}", userParameters);
 
         return _mapper.Map<List<UserReadDto>>(pagedUsers);
     }

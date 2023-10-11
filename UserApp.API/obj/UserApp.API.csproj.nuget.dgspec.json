@@ -168,26 +168,6 @@
               "target": "Package",
               "version": "[11.7.1, )"
             },
-            "PagedList": {
-              "target": "Package",
-              "version": "[1.17.0, )"
-            },
-            "PagedList.Core": {
-              "target": "Package",
-              "version": "[1.17.4, )"
-            },
-            "PagedList.Core.Mvc": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "PagedList.Mvc": {
-              "target": "Package",
-              "version": "[4.5.0, )"
-            },
-            "PagedList.NetCore": {
-              "target": "Package",
-              "version": "[1.0.6, )"
-            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[7.0.0, )"
