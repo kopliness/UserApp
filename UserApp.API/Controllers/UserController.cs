@@ -32,8 +32,10 @@ public class UserController : ControllerBase
     [SwaggerResponse(401, "If user is not authenticated")]
     [SwaggerResponse(422, "If incorrect age range")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters)
+    public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var validationResult = _userParametersValidator.Validate(userParameters);
 
         if (!validationResult.IsValid)
@@ -50,8 +52,10 @@ public class UserController : ControllerBase
     [SwaggerResponse(200, "Returns a user with the specified ID", typeof(UserReadDto))]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> GetUser(Guid id)
+    public async Task<IActionResult> GetUser(Guid id, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var user = await _userService.GetUser(id);
 
         return Ok(user);
@@ -62,8 +66,10 @@ public class UserController : ControllerBase
     [SwaggerResponse(200, "Returns the newly created user", typeof(UserReadDto))]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> CreateUser([FromBody] UserCreateDto newUserCreateDto)
+    public async Task<IActionResult> CreateUser([FromBody] UserCreateDto newUserCreateDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var validationResult = _userValidator.Validate(newUserCreateDto);
 
         if (!validationResult.IsValid)
@@ -79,9 +85,12 @@ public class UserController : ControllerBase
     [SwaggerResponse(200, "Roles added successfully")]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> AddRolesToUser([FromForm] UserRoleDto userRoleDto)
+    public async Task<IActionResult> AddRolesToUser([FromForm] UserRoleDto userRoleDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         await _userService.AddRoleToUser(userRoleDto.UserId, userRoleDto.RoleIds);
+        
         return Ok();
     }
 
@@ -90,9 +99,12 @@ public class UserController : ControllerBase
     [SwaggerResponse(200, "Roles deleted successfully")]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> DeleteRolesFromUser([FromForm] UserRoleDto userRoleDto)
+    public async Task<IActionResult> DeleteRolesFromUser([FromForm] UserRoleDto userRoleDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         await _userService.DeleteRoleFromUser(userRoleDto.UserId, userRoleDto.RoleIds);
+        
         return Ok();
     }
 
@@ -102,8 +114,10 @@ public class UserController : ControllerBase
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserCreateDto newUserCreateDto)
+    public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserCreateDto newUserCreateDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var validationResult = _userValidator.Validate(newUserCreateDto);
 
         if (!validationResult.IsValid)
@@ -119,8 +133,10 @@ public class UserController : ControllerBase
     [SwaggerResponse(200, "User deleted successfully")]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
-    public async Task<IActionResult> DeleteUser(Guid id)
+    public async Task<IActionResult> DeleteUser(Guid id, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var user = await _userService.DeleteUser(id);
 
         return Ok(user);

@@ -23,8 +23,10 @@ public class UserService : IUserService
         _logger = logger;
     }
 
-    public async Task<List<UserReadDto>> GetUsers(UserParameters userParameters)
+    public async Task<List<UserReadDto>> GetUsers(UserParameters userParameters, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("GetUsers method called with parameters: {UserParameters}", userParameters);
 
         IQueryable<User> users = _context.Users
@@ -80,14 +82,16 @@ public class UserService : IUserService
         return _mapper.Map<List<UserReadDto>>(pagedUsers);
     }
 
-    public async Task<UserReadDto> GetUser(Guid id)
+    public async Task<UserReadDto> GetUser(Guid id, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("Getting user with ID: {id}", id);
 
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id);
+            .FirstOrDefaultAsync(u => u.Id == id,cancellationToken);
 
         if (user == null)
         {
@@ -111,15 +115,17 @@ public class UserService : IUserService
         return userDto;
     }
 
-    public async Task AddRoleToUser(Guid userId, List<int> roleIds)
+    public async Task AddRoleToUser(Guid userId, List<int> roleIds, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("AddRoleToUser method called with userId: {UserId} and roleIds: {RoleIds}", userId,
             roleIds);
 
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId);
+            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
 
         if (user == null)
         {
@@ -158,20 +164,22 @@ public class UserService : IUserService
             RoleId = x
         }));
 
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation("Roles {RoleIds} successfully added to user with ID {UserId}.", roleIds, userId);
     }
 
-    public async Task DeleteRoleFromUser(Guid userId, List<int> roleIds)
+    public async Task DeleteRoleFromUser(Guid userId, List<int> roleIds, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("DeleteRoleFromUser method called with userId: {UserId} and roleIds: {RoleIds}", userId,
             roleIds);
 
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId);
+            .FirstOrDefaultAsync(u => u.Id == userId,cancellationToken);
 
         if (user == null)
         {
@@ -204,13 +212,15 @@ public class UserService : IUserService
         if (rolesToRemove.Count > 0)
         {
             _context.UserRoles.RemoveRange(rolesToRemove);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation("Roles {RoleIds} successfully removed from user with ID {UserId}.", roleIds, userId);
         }
     }
 
-    public async Task<UserCreateDto> CreateUser(UserCreateDto newUserCreateDto)
+    public async Task<UserCreateDto> CreateUser(UserCreateDto newUserCreateDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("CreateUser method called with user data: {NewUserData}", newUserCreateDto);
 
         var userExists = await _context.Users.AnyAsync(u => u.Email == newUserCreateDto.Email);
@@ -222,26 +232,28 @@ public class UserService : IUserService
 
         var user = _mapper.Map<UserCreateDto, User>(newUserCreateDto);
         _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
 
-        await AddRoleToUser(user.Id, newUserCreateDto.Roles);
+        await AddRoleToUser(user.Id, newUserCreateDto.Roles, cancellationToken);
 
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation("User with ID {UserId} was successfully created.", user.Id);
 
         return newUserCreateDto;
     }
 
-    public async Task<UserCreateDto> UpdateUser(Guid id, UserCreateDto updatedUserCreateDto)
+    public async Task<UserCreateDto> UpdateUser(Guid id, UserCreateDto updatedUserCreateDto, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation(
             "UpdateUser method called with user ID: {UserId} and updated user data: {UpdatedUserData}", id,
             updatedUserCreateDto);
 
         var user = await _context.Users
             .Include(u => u.UserRoles)
-            .FirstOrDefaultAsync(u => u.Id == id);
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
         if (user == null)
         {
             _logger.LogError("User with ID {id} does not exist.", id);
@@ -253,7 +265,7 @@ public class UserService : IUserService
         user.Age = updatedUserCreateDto.Age;
 
         var existingUserWithSameEmail =
-            await _context.Users.FirstOrDefaultAsync(u => u.Email == updatedUserCreateDto.Email);
+            await _context.Users.FirstOrDefaultAsync(u => u.Email == updatedUserCreateDto.Email, cancellationToken);
         if (existingUserWithSameEmail != null && existingUserWithSameEmail.Id != id)
         {
             _logger.LogError("Email {Email} already belongs to another user.", updatedUserCreateDto.Email);
@@ -262,21 +274,23 @@ public class UserService : IUserService
 
         await AddRoleToUser(user.Id, updatedUserCreateDto.Roles);
 
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation("User with ID {UserId} was successfully updated.", user.Id);
 
         return _mapper.Map<UserCreateDto>(user);
     }
 
-    public async Task<UserReadDto> DeleteUser(Guid id)
+    public async Task<UserReadDto> DeleteUser(Guid id, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         _logger.LogInformation("DeleteUser method called with user ID: {UserId}", id);
 
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id);
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
         if (user == null)
         {
             _logger.LogError("User with ID {id} does not exist.", id);
@@ -295,7 +309,7 @@ public class UserService : IUserService
             .ToList();
 
         _context.Users.Remove(user);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation("User with ID {UserId} was successfully deleted.", user.Id);
 
