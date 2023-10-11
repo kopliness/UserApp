@@ -17,10 +17,26 @@ namespace DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("DataLayer.Entities.Account", b =>
+                {
+                    b.Property<string>("Login")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Login");
+
+                    b.ToTable("Accounts");
+                });
 
             modelBuilder.Entity("DataLayer.Entities.Role", b =>
                 {
@@ -67,7 +83,8 @@ namespace DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Email")

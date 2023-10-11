@@ -1,6 +1,7 @@
 using BusinessLayer.DTO;
 using BusinessLayer.Services;
 using BusinessLayer.Validation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using UserApp.Common;
@@ -8,6 +9,7 @@ using UserApp.Common;
 namespace UserApp.API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("user")]
 public class UserController : ControllerBase
 {
@@ -27,6 +29,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Get all users", Description = "Get a list of all users")]
     [SwaggerResponse(200, "Returns a list of UserReadDto", typeof(List<UserReadDto>))]
     [SwaggerResponse(400, "If incorrect page size")]
+    [SwaggerResponse(401, "If user is not authenticated")]
     [SwaggerResponse(422, "If incorrect age range")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters)

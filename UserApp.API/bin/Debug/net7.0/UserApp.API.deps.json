@@ -13,7 +13,10 @@
           "FluentValidation": "11.7.1",
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.7.1",
+          "JWT": "10.1.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.10",
           "Microsoft.AspNetCore.OpenApi": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Design": "7.0.12",
           "Serilog.AspNetCore": "7.0.0",
           "Serilog.Sinks.Console": "4.2.0-dev-00918",
           "Serilog.Sinks.File": "5.0.1-dev-00968",
@@ -114,11 +117,31 @@
           }
         }
       },
+      "Humanizer.Core/2.14.1": {
+        "runtime": {
+          "lib/net6.0/Humanizer.dll": {
+            "assemblyVersion": "2.14.0.0",
+            "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
       "JetBrains.Annotations/2022.3.1": {
         "runtime": {
           "lib/netstandard2.0/JetBrains.Annotations.dll": {
             "assemblyVersion": "4242.42.42.42",
             "fileVersion": "2022.3.1.0"
+          }
+        }
+      },
+      "JWT/10.1.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2",
+          "System.Text.Json": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/JWT.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.0.0"
           }
         }
       },
@@ -163,6 +186,17 @@
           "lib/net45/System.Web.WebPages.dll": {
             "assemblyVersion": "3.0.0.0",
             "fileVersion": "3.0.61128.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.10": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.24.0"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "7.0.10.0",
+            "fileVersion": "7.0.1023.36439"
           }
         }
       },
@@ -247,46 +281,60 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.11": {
+      "Microsoft.EntityFrameworkCore/7.0.12": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.11",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.12",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.12",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.11.0",
-            "fileVersion": "7.0.1123.40906"
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47811"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "7.0.11.0",
-            "fileVersion": "7.0.1123.40906"
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47811"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.11": {},
-      "Microsoft.EntityFrameworkCore.Relational/7.0.11": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {},
+      "Microsoft.EntityFrameworkCore.Design/7.0.12": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.11",
+          "Humanizer.Core": "2.14.1",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.12",
+          "Microsoft.Extensions.DependencyModel": "7.0.0",
+          "Mono.TextTemplating": "2.2.1"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47811"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Relational/7.0.12": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.12",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "7.0.11.0",
-            "fileVersion": "7.0.1123.40906"
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47811"
           }
         }
       },
       "Microsoft.EntityFrameworkCore.SqlServer/7.0.11": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.11"
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.12"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -500,49 +548,22 @@
           }
         }
       },
-      "PagedList/1.17.0": {
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "assemblyVersion": "1.17.0.0",
-            "fileVersion": "1.17.0.0"
-          }
-        }
-      },
-      "PagedList.Core/1.17.4": {
-        "runtime": {
-          "lib/netcoreapp1.0/PagedList.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "PagedList.Core.Mvc/3.0.0": {
+      "Mono.TextTemplating/2.2.1": {
         "dependencies": {
-          "PagedList.Core": "1.17.4"
+          "System.CodeDom": "4.4.0"
         },
         "runtime": {
-          "lib/netcoreapp3.0/PagedList.Core.Mvc.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.0.0"
+          "lib/netstandard2.0/Mono.TextTemplating.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.1.1"
           }
         }
       },
-      "PagedList.Mvc/4.5.0": {
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
+      "Newtonsoft.Json/13.0.2": {
         "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
-          }
-        }
-      },
-      "PagedList.NetCore/1.0.6": {
-        "runtime": {
-          "lib/netstandard2.0/PagedList.NetCore.dll": {
-            "assemblyVersion": "1.0.6.0",
-            "fileVersion": "1.0.6.0"
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.2.27524"
           }
         }
       },
@@ -703,6 +724,14 @@
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
             "assemblyVersion": "6.4.0.0",
             "fileVersion": "6.4.0.0"
+          }
+        }
+      },
+      "System.CodeDom/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25519.3"
           }
         }
       },
@@ -925,11 +954,6 @@
           "AutoMapper": "12.0.1",
           "FluentValidation": "11.7.1",
           "FluentValidation.DependencyInjectionExtensions": "11.7.1",
-          "PagedList": "1.17.0",
-          "PagedList.Core": "1.17.4",
-          "PagedList.Core.Mvc": "3.0.0",
-          "PagedList.Mvc": "4.5.0",
-          "PagedList.NetCore": "1.0.6",
           "Serilog.AspNetCore": "7.0.0",
           "UserApp.Common": "1.0.0",
           "UserApp.DAL": "1.0.0",
@@ -948,8 +972,8 @@
       },
       "UserApp.DAL/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.11",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.11",
+          "Microsoft.EntityFrameworkCore": "7.0.12",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.11"
         },
         "runtime": {
@@ -1013,12 +1037,26 @@
       "path": "fluentvalidation.dependencyinjectionextensions/11.7.1",
       "hashPath": "fluentvalidation.dependencyinjectionextensions.11.7.1.nupkg.sha512"
     },
+    "Humanizer.Core/2.14.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
+      "path": "humanizer.core/2.14.1",
+      "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
     "JetBrains.Annotations/2022.3.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-11nsS3+lFICGkztVs9PP2NRItxf9fF+qD6xEW/T0YGto52zj07wseUeBdMAU1ah9HNVTDZyRC1u4NWdtJScwhw==",
       "path": "jetbrains.annotations/2022.3.1",
       "hashPath": "jetbrains.annotations.2022.3.1.nupkg.sha512"
+    },
+    "JWT/10.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OJ7Vr6Rf539Ty8iw1FDcfM2Adp7BVT0tOEld5NZnxcVguzczFfv2dsdUKGWf9FVc4VCcVRXv0KZ7Q3/zs+b0Iw==",
+      "path": "jwt/10.1.1",
+      "hashPath": "jwt.10.1.1.nupkg.sha512"
     },
     "Microsoft.AspNet.Mvc/5.2.7": {
       "type": "package",
@@ -1040,6 +1078,13 @@
       "sha512": "sha512-2jwZFB7PvY+tbdz0ZP4iEo7gMrJxkCQUzoGLh6swUc6ZXl6DoKyDslmGcC/j9PFmJXCRMVIqtRorlPSMU2DuRA==",
       "path": "microsoft.aspnet.webpages/3.2.7",
       "hashPath": "microsoft.aspnet.webpages.3.2.7.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8/GWtq034kzrDapCHYbAnnJXIYAJzFcJoXP5OtlbjIWBQBLxEbstRv3N4DJAvlcGUXxy0DmmNVDiSlFAY8HpWw==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.10",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/7.0.5": {
       "type": "package",
@@ -1076,33 +1121,40 @@
       "path": "microsoft.data.sqlclient.sni.runtime/5.1.0",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/7.0.11": {
+    "Microsoft.EntityFrameworkCore/7.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-r7YGITjQ7v1hYtUXIavjSx+T1itKVPUFAIBN7HaKNjbR8x+gep8w9H3NEchglJOh1woZR4b2MhbSo2YFRZwZDg==",
-      "path": "microsoft.entityframeworkcore/7.0.11",
-      "hashPath": "microsoft.entityframeworkcore.7.0.11.nupkg.sha512"
+      "sha512": "sha512-HRge/bJ5SKMNeqybC4NnRwWZn69QBjVVoVmwhmJ8xgQ50Ye+jTOOf2mef/y4Lrq1HUeMg8cu+3JeFdnp+Y8skA==",
+      "path": "microsoft.entityframeworkcore/7.0.12",
+      "hashPath": "microsoft.entityframeworkcore.7.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IoOnhycZ0/VtLowf0HgB0cujxwksokzkS3/5108AHOcbntHUTqwxtCjG4E4FCly/45G+mxb+4PxBdFZhA49lwQ==",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.11",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512"
+      "sha512": "sha512-GDlY3DzUbpagqb0683NUM2RK9eJFjTfmlLJd5YtvzBf8T4dwanIOSjd2vN7dXJihyZ0JlYaCetyHgxzbrxiUOw==",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.12",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.11": {
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Qexum5safSSfijx6P1QSq5bVJPPTM/uf7lQmpL/shkiozEC/0FzqNaVUfFpbNN8zsO1jMFYbeDMF4cxJMlTT9w==",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.11",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512"
+      "sha512": "sha512-feFe61uKUNoHJfo9tnO65BTzcpWEYIr34xWikhYgZl5c9RiiUJLuCoTqoGc9fuuKy+xk9aUa1NwgDGMC4KmBig==",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.12",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/7.0.11": {
+    "Microsoft.EntityFrameworkCore.Design/7.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yHEEyah1XARStV1SJOsdKj8ieoMCZ0MkNuQaLfWONMWmbqwuDohfGQZk/FuzdT4aO/lJrUYiXbBSFv0ACzphEw==",
-      "path": "microsoft.entityframeworkcore.relational/7.0.11",
-      "hashPath": "microsoft.entityframeworkcore.relational.7.0.11.nupkg.sha512"
+      "sha512": "sha512-5UoOLj+qJGkEoL379wi1cSq1bBCCZQZRO5w/wE89ZakQT6qx8juAlJLg4fFwfrg0tYWP12iUAholwcuDM38s7g==",
+      "path": "microsoft.entityframeworkcore.design/7.0.12",
+      "hashPath": "microsoft.entityframeworkcore.design.7.0.12.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/7.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-apLzFyjM3s/voBiaMCJPwIOk5SxA1N6GmSbhqthfbUDn8mX+kxZl4RXNdaoBLzPKfUg4EoqCtt0YON/g9YXruQ==",
+      "path": "microsoft.entityframeworkcore.relational/7.0.12",
+      "hashPath": "microsoft.entityframeworkcore.relational.7.0.12.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.SqlServer/7.0.11": {
       "type": "package",
@@ -1307,40 +1359,19 @@
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
-    "PagedList/1.17.0": {
+    "Mono.TextTemplating/2.2.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "path": "pagedlist/1.17.0",
-      "hashPath": "pagedlist.1.17.0.nupkg.sha512"
+      "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
+      "path": "mono.texttemplating/2.2.1",
+      "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
-    "PagedList.Core/1.17.4": {
+    "Newtonsoft.Json/13.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Me111vdmlPp4GGeHqvNlnv4Raq1f1F77fDsJebuKsHCZXG4v4kMDzd5h1YVDv/Q7q9DuVgueR9mxp7eO7Yj4LA==",
-      "path": "pagedlist.core/1.17.4",
-      "hashPath": "pagedlist.core.1.17.4.nupkg.sha512"
-    },
-    "PagedList.Core.Mvc/3.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-cfMopTUyfyDcZ/HL58w9DWmlb6M9yYYaJ0i3c1j8bGeZCHRyfX3Y5rDnPa1olFdqJmh8sRIx2aKMczGe++E9sA==",
-      "path": "pagedlist.core.mvc/3.0.0",
-      "hashPath": "pagedlist.core.mvc.3.0.0.nupkg.sha512"
-    },
-    "PagedList.Mvc/4.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "path": "pagedlist.mvc/4.5.0",
-      "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
-    },
-    "PagedList.NetCore/1.0.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-g56fzDemQIGHqUhwNHKpFu/gKuFbEebmclLbgJZDANP78Tu/oLt8tGILdf6Mk0gcpbfzYM9HXmyw7rUjaHs24A==",
-      "path": "pagedlist.netcore/1.0.6",
-      "hashPath": "pagedlist.netcore.1.0.6.nupkg.sha512"
+      "sha512": "sha512-R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
+      "path": "newtonsoft.json/13.0.2",
+      "hashPath": "newtonsoft.json.13.0.2.nupkg.sha512"
     },
     "Serilog/2.12.0": {
       "type": "package",
@@ -1439,6 +1470,13 @@
       "sha512": "sha512-1Hh3atb3pi8c+v7n4/3N80Jj8RvLOXgWxzix6w3OZhB7zBGRwsy7FWr4e3hwgPweSBpwfElqj4V4nkjYabH9nQ==",
       "path": "swashbuckle.aspnetcore.swaggerui/6.4.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    },
+    "System.CodeDom/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2sCCb7doXEwtYAbqzbF/8UAeDRMNmPaQbU2q50Psg1J9KzumyVVCgKQY8s53WIPTufNT0DpSe9QRvVjOzfDWBA==",
+      "path": "system.codedom/4.4.0",
+      "hashPath": "system.codedom.4.4.0.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "type": "package",

@@ -11,11 +11,6 @@
           "AutoMapper": "12.0.1",
           "FluentValidation": "11.7.1",
           "FluentValidation.DependencyInjectionExtensions": "11.7.1",
-          "PagedList": "1.17.0",
-          "PagedList.Core": "1.17.4",
-          "PagedList.Core.Mvc": "3.0.0",
-          "PagedList.Mvc": "4.5.0",
-          "PagedList.NetCore": "1.0.6",
           "Serilog.AspNetCore": "7.0.0",
           "UserApp.Common": "1.0.0",
           "UserApp.DAL": "1.0.0",
@@ -455,52 +450,6 @@
             "assetType": "runtime",
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.52210"
-          }
-        }
-      },
-      "PagedList/1.17.0": {
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "assemblyVersion": "1.17.0.0",
-            "fileVersion": "1.17.0.0"
-          }
-        }
-      },
-      "PagedList.Core/1.17.4": {
-        "runtime": {
-          "lib/netcoreapp1.0/PagedList.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "PagedList.Core.Mvc/3.0.0": {
-        "dependencies": {
-          "PagedList.Core": "1.17.4"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/PagedList.Core.Mvc.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.0.0"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
-          }
-        }
-      },
-      "PagedList.NetCore/1.0.6": {
-        "runtime": {
-          "lib/netstandard2.0/PagedList.NetCore.dll": {
-            "assemblyVersion": "1.0.6.0",
-            "fileVersion": "1.0.6.0"
           }
         }
       },
@@ -1159,41 +1108,6 @@
       "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
-    },
-    "PagedList/1.17.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "path": "pagedlist/1.17.0",
-      "hashPath": "pagedlist.1.17.0.nupkg.sha512"
-    },
-    "PagedList.Core/1.17.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Me111vdmlPp4GGeHqvNlnv4Raq1f1F77fDsJebuKsHCZXG4v4kMDzd5h1YVDv/Q7q9DuVgueR9mxp7eO7Yj4LA==",
-      "path": "pagedlist.core/1.17.4",
-      "hashPath": "pagedlist.core.1.17.4.nupkg.sha512"
-    },
-    "PagedList.Core.Mvc/3.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-cfMopTUyfyDcZ/HL58w9DWmlb6M9yYYaJ0i3c1j8bGeZCHRyfX3Y5rDnPa1olFdqJmh8sRIx2aKMczGe++E9sA==",
-      "path": "pagedlist.core.mvc/3.0.0",
-      "hashPath": "pagedlist.core.mvc.3.0.0.nupkg.sha512"
-    },
-    "PagedList.Mvc/4.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "path": "pagedlist.mvc/4.5.0",
-      "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
-    },
-    "PagedList.NetCore/1.0.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-g56fzDemQIGHqUhwNHKpFu/gKuFbEebmclLbgJZDANP78Tu/oLt8tGILdf6Mk0gcpbfzYM9HXmyw7rUjaHs24A==",
-      "path": "pagedlist.netcore/1.0.6",
-      "hashPath": "pagedlist.netcore.1.0.6.nupkg.sha512"
     },
     "Serilog/2.12.0": {
       "type": "package",

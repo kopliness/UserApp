@@ -160,11 +160,6 @@ C:\Users\Vlad\Documents\Системное программирование\Ла
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\System.Web.WebPages.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
-C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\PagedList.dll
-C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\PagedList.Core.dll
-C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\PagedList.Core.Mvc.dll
-C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\PagedList.Mvc.dll
-C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\PagedList.NetCore.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\X.PagedList.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\X.PagedList.Mvc.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll
@@ -185,3 +180,10 @@ C:\Users\Vlad\Documents\Системное программирование\Ла
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.Console.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.File.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\JWT.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\System.CodeDom.dll
