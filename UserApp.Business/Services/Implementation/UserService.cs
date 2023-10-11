@@ -4,6 +4,7 @@ using DataLayer.EFCore;
 using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using UserApp.Common;
+using UserApp.Common.Extensions;
 using X.PagedList;
 
 namespace BusinessLayer.Services.Implementation;
@@ -38,9 +39,7 @@ public class UserService : IUserService
             users = users.Where(u => u.Age <= userParameters.AgeTo);
 
             if (userParameters.AgeTo < userParameters.AgeFrom)
-            {
-                throw new Exception("AgeTo must be greater or equal than AgeFrom");
-            }
+                throw new AgeRangeException("AgeTo must be greater or equal than AgeFrom");
         }
 
         if (!string.IsNullOrEmpty(userParameters.Email))
@@ -76,7 +75,7 @@ public class UserService : IUserService
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new Exception("User not found");
+            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new NotFoundException("User with this ID does not exist.");
 
         var userDto = _mapper.Map<User, UserReadDto>(user);
 
@@ -97,10 +96,10 @@ public class UserService : IUserService
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new ApplicationException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new NotFoundException("User with this ID does not exist.");
 
         if (roleIds.Count == 0)
-            throw new ApplicationException("Role list is empty.");
+            throw new IncorrectRolesException("Role list is empty.");
 
         var assignedRoleIds = user.UserRoles.Select(ur => ur.RoleId).ToList();
 
@@ -109,14 +108,14 @@ public class UserService : IUserService
         var distinctRoleIds = roleIds.Distinct().ToList();
         if (distinctRoleIds.Count != roleIds.Count)
         {
-            throw new ApplicationException("Role list contains duplicates.");
+            throw new IncorrectRolesException("Role list contains duplicates.");
         }
 
         var existingRoles = await _context.Roles.Where(r => distinctRoleIds.Contains(r.Id)).ToListAsync();
         if (existingRoles.Count != distinctRoleIds.Count)
         {
             var missingRoleId = distinctRoleIds.First(id => !existingRoles.Any(r => r.Id == id));
-            throw new Exception($"Role with ID {missingRoleId} does not exist.");
+            throw new IncorrectRolesException($"Role with ID {missingRoleId} does not exist.");
         }
 
         _context.UserRoles.AddRange(roleIds.Select(x=> new UserRole
@@ -133,20 +132,20 @@ public class UserService : IUserService
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new Exception("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new NotFoundException("User with this ID does not exist.");
 
         if (roleIds.Count == 0)
-            throw new ApplicationException("Role list is empty.");
+            throw new IncorrectRolesException("Role list is empty.");
 
         var existingRoles = await _context.Roles.Where(r => roleIds.Contains(r.Id)).ToListAsync();
         if (existingRoles.Count != roleIds.Count)
         {
             var missingRoleId = roleIds.First(id => !existingRoles.Any(r => r.Id == id));
-            throw new Exception($"Role with ID {missingRoleId} does not exist.");
+            throw new IncorrectRolesException($"Role with ID {missingRoleId} does not exist.");
         }
 
         if (user.UserRoles?.Any(ur => roleIds.Contains(ur.Role.Id)) == false)
-            throw new Exception("User has no roles that match the given roles.");
+            throw new IncorrectRolesException("User has no roles that match the given roles.");
 
         var rolesToRemove = user.UserRoles.Where(ur => ur.Role != null && roleIds.Contains(ur.Role.Id)).ToList();
 
@@ -162,7 +161,7 @@ public class UserService : IUserService
     {
         var userExists = await _context.Users.AnyAsync(u => u.Email == newUserCreateDto.Email);
         if (userExists)
-            throw new ApplicationException("A user with this email already exists.");
+            throw new UserExistsException("A user with this email already exists.");
 
         var user = _mapper.Map<UserCreateDto, User>(newUserCreateDto);
         _context.Users.Add(user);
@@ -179,12 +178,7 @@ public class UserService : IUserService
     {
         var user = await _context.Users
             .Include(u => u.UserRoles)
-            .FirstOrDefaultAsync(u => u.Id == id);
-
-        if (user == null)
-        {
-            throw new ApplicationException("User with this ID does not exist.");
-        }
+            .FirstOrDefaultAsync(u => u.Id == id)?? throw new NotFoundException("User with this ID does not exist.");
 
         user.Name = updatedUserCreateDto.Name;
         user.Email = updatedUserCreateDto.Email;
@@ -205,7 +199,7 @@ public class UserService : IUserService
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new ApplicationException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new NotFoundException("User with this ID does not exist.");
 
         var userDto = _mapper.Map<User, UserReadDto>(user);
 

@@ -6,6 +6,7 @@ using DataLayer.EFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using FluentValidation;
+using UserApp.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorExceptionHandling>();
 
 app.UseHttpsRedirection();
 
