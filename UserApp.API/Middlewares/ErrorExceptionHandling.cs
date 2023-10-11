@@ -50,6 +50,13 @@ public class ErrorExceptionHandling
                 HttpStatusCode.UnprocessableEntity,
                 e.Message);
         }
+        catch (AccountExistsException e)
+        {
+            await HandleExceptionAsync(context,
+                e.Message,
+                HttpStatusCode.BadRequest,
+                e.Message);
+        }
         catch (Exception e)
         {
             Console.WriteLine(e.ToString());
