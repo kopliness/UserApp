@@ -2,54 +2,65 @@ using BusinessLayer.DTO;
 using BusinessLayer.Services;
 using BusinessLayer.Validation;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace UserApp.API.Controllers;
-
-[ApiController]
-[Route("account")]
-public class AccountController : ControllerBase
+namespace UserApp.API.Controllers
 {
-    private readonly IAuthenticationService _authenticationService;
-
-    private readonly IAccountService _accountService;
-
-    private readonly AccountValidator _accountValidator;
-
-    public AccountController(IAuthenticationService authenticationService, IAccountService accountService,
-        AccountValidator accountValidator)
+    [ApiController]
+    [Route("account")]
+    public class AccountController : ControllerBase
     {
-        _authenticationService = authenticationService;
-        _accountService = accountService;
-        _accountValidator = accountValidator;
-    }
+        private readonly IAuthenticationService _authenticationService;
+        private readonly IAccountService _accountService;
+        private readonly AccountValidator _accountValidator;
 
-    [HttpGet("sign-in")]
-    public async Task<IActionResult> GetToken([FromQuery] AccountDto accountDto,
-        CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
+        public AccountController(IAuthenticationService authenticationService, IAccountService accountService,
+            AccountValidator accountValidator)
+        {
+            _authenticationService = authenticationService;
+            _accountService = accountService;
+            _accountValidator = accountValidator;
+        }
 
-        var validationResult = _accountValidator.Validate(accountDto);
+        [HttpGet("sign-in")]
+        [SwaggerOperation(Summary = "Sign in", Description = "Sign in with account credentials")]
+        [SwaggerResponse(200, "Returns the user token", typeof(string))]
+        [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+        [SwaggerResponse(404, "If a account with the specified login is not found")]
+        [SwaggerResponse(500, "If there is an internal server error")]
+        public async Task<IActionResult> GetToken([FromQuery] AccountDto accountDto,
+            CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
 
-        if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
+            var validationResult = _accountValidator.Validate(accountDto);
 
-        var token = await _authenticationService.GetUserTokenAsync(accountDto, cancellationToken);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
 
-        return Ok(token);
-    }
+            var token = await _authenticationService.GetUserTokenAsync(accountDto, cancellationToken);
 
-    [HttpPost("sign-up")]
-    public async Task<IActionResult> RegisterUser(AccountDto accountDto, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
+            return Ok(token);
+        }
 
-        var validationResult = _accountValidator.Validate(accountDto);
+        [HttpPost("sign-up")]
+        [SwaggerOperation(Summary = "Sign up", Description = "Register a new user")]
+        [SwaggerResponse(200, "Returns the newly registered user", typeof(AccountDto))]
+        [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+        [SwaggerResponse(500, "If there is an internal server error")]
+        public async Task<IActionResult> RegisterUser(AccountDto accountDto, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
 
-        if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
-        var account = await _accountService.RegisterUserAsync(accountDto, cancellationToken);
+            var validationResult = _accountValidator.Validate(accountDto);
 
-        return Ok(account);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+            var account = await _accountService.RegisterUserAsync(accountDto, cancellationToken);
+
+            return Ok(account);
+        }
     }
 }

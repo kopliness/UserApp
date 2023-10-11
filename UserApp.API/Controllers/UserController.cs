@@ -29,7 +29,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Get all users", Description = "Get a list of all users")]
     [SwaggerResponse(200, "Returns a list of UserReadDto", typeof(List<UserReadDto>))]
     [SwaggerResponse(400, "If incorrect page size")]
-    [SwaggerResponse(401, "If user is not authenticated")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(422, "If incorrect age range")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters, CancellationToken cancellationToken = default)
@@ -50,6 +50,7 @@ public class UserController : ControllerBase
     [HttpGet("{id:guid}")]
     [SwaggerOperation(Summary = "Get a user by ID", Description = "Get a specific user by ID")]
     [SwaggerResponse(200, "Returns a user with the specified ID", typeof(UserReadDto))]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> GetUser(Guid id, CancellationToken cancellationToken = default)
@@ -63,8 +64,9 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [SwaggerOperation(Summary = "Create a new user", Description = "Create a new user")]
-    [SwaggerResponse(200, "Returns the newly created user", typeof(UserReadDto))]
+    [SwaggerResponse(201, "Returns the newly created user", typeof(UserReadDto))]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> CreateUser([FromBody] UserCreateDto newUserCreateDto, CancellationToken cancellationToken = default)
     {
@@ -75,15 +77,16 @@ public class UserController : ControllerBase
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var user = await _userService.CreateUser(newUserCreateDto);
+        var user = await _userService.CreateUser(newUserCreateDto, cancellationToken);
         
-        return Ok(user);
+        return CreatedAtAction(nameof(CreateUser), user);
     }
 
     [HttpPost("set-roles")]
     [SwaggerOperation(Summary = "Add roles to user", Description = "Add roles to a specific user")]
     [SwaggerResponse(200, "Roles added successfully")]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> AddRolesToUser([FromForm] UserRoleDto userRoleDto, CancellationToken cancellationToken = default)
     {
@@ -98,6 +101,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Delete roles from user", Description = "Delete roles from a specific user")]
     [SwaggerResponse(200, "Roles deleted successfully")]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> DeleteRolesFromUser([FromForm] UserRoleDto userRoleDto, CancellationToken cancellationToken = default)
     {
@@ -112,6 +116,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Update a user", Description = "Update a specific user(deletes old roles)")]
     [SwaggerResponse(200, "Returns the updated user", typeof(UserReadDto))]
     [SwaggerResponse(400, "If the request is malformed or the input is invalid")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserCreateDto newUserCreateDto, CancellationToken cancellationToken = default)
@@ -131,6 +136,7 @@ public class UserController : ControllerBase
     [HttpDelete("{id:guid}")]
     [SwaggerOperation(Summary = "Delete a user", Description = "Delete a specific user")]
     [SwaggerResponse(200, "User deleted successfully")]
+    [SwaggerResponse(403, "If user is not authenticated")]
     [SwaggerResponse(404, "If a user with the specified ID is not found")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<IActionResult> DeleteUser(Guid id, CancellationToken cancellationToken = default)
