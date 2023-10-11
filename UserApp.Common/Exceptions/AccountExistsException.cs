@@ -1,4 +1,4 @@
-namespace UserApp.Common.Extensions;
+namespace UserApp.Common.Exceptions;
 
 public class AccountExistsException : Exception
 {

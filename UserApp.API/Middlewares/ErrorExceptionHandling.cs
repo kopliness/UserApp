@@ -1,6 +1,6 @@
 using System.Net;
 using BusinessLayer.DTO;
-using UserApp.Common.Extensions;
+using UserApp.Common.Exceptions;
 
 namespace UserApp.API.Middlewares;
 

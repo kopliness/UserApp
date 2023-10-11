@@ -5,7 +5,7 @@ using DataLayer.EFCore;
 using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using UserApp.Common.Extensions;
+using UserApp.Common.Exceptions;
 
 namespace BusinessLayer.Services.Implementation;
 

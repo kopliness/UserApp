@@ -5,7 +5,7 @@ using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UserApp.Common;
-using UserApp.Common.Extensions;
+using UserApp.Common.Exceptions;
 using X.PagedList;
 
 namespace BusinessLayer.Services.Implementation;

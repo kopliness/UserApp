@@ -1,5 +1,3 @@
-using UserApp.Common.Extensions;
-
 namespace UserApp.Common;
 
 public class UserParameters
