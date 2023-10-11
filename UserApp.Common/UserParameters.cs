@@ -1,3 +1,5 @@
+using UserApp.Common.Extensions;
+
 namespace UserApp.Common;
 
 public class UserParameters
@@ -14,10 +16,6 @@ public class UserParameters
         }
         set
         {
-            if (value > maxPageSize)
-            {
-                throw new ArgumentOutOfRangeException(nameof(value), $"PageSize cannot be more than {maxPageSize}");
-            }
             _pageSize = value;
         }
     }
@@ -29,5 +27,3 @@ public class UserParameters
     public string? Email { get; set; }
     public string? RoleName { get; set; }
 }
-
-

@@ -50,7 +50,6 @@ public class ErrorExceptionHandling
                 HttpStatusCode.UnprocessableEntity,
                 e.Message);
         }
-        
         catch (Exception e)
         {
             Console.WriteLine(e.ToString());

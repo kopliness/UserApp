@@ -26,6 +26,7 @@ public class UserController : ControllerBase
     [HttpGet]
     [SwaggerOperation(Summary = "Get all users", Description = "Get a list of all users")]
     [SwaggerResponse(200, "Returns a list of UserReadDto", typeof(List<UserReadDto>))]
+    [SwaggerResponse(400, "If incorrect page size")]
     [SwaggerResponse(422, "If incorrect age range")]
     [SwaggerResponse(500, "If there is an internal server error")]
     public async Task<ActionResult<List<UserReadDto>>> GetUsers([FromQuery] UserParameters userParameters)

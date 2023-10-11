@@ -12,7 +12,7 @@ public class UserParametersValidator : AbstractValidator<UserParameters>
 
         RuleFor(user => user.PageSize)
             .GreaterThanOrEqualTo(1).WithMessage("PageSize must be greater than or equal to 1")
-            .LessThanOrEqualTo(50).WithMessage("PageSize cannot be more than 50");
+            .LessThanOrEqualTo(50).WithMessage($"PageSize cannot be more than {50}");
 
         RuleFor(user => user.OrderBy)
             .Must(value =>
