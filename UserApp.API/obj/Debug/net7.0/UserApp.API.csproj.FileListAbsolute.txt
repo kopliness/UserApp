@@ -175,3 +175,13 @@ C:\Users\Vlad\Documents\Системное программирование\Ла
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.AspNetCore.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Extensions.Hosting.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Settings.Configuration.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.Console.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
+C:\Users\Vlad\Documents\Системное программирование\Лаб 1\UserAPI\UserApp.API\bin\Debug\net7.0\Serilog.Sinks.File.dll

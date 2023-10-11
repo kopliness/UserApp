@@ -9,6 +9,7 @@ public class UserValidator : AbstractValidator<UserCreateDto>
     {
         RuleFor(user => user.Name)
             .NotEmpty().WithMessage("Name is required.")
+            .Matches(@"^[a-zA-Z\s]*$").WithMessage("Name can only contain letters and spaces")
             .Length(2, 50).WithMessage("Name must be between 2 and 50 characters.");
 
         RuleFor(user => user.Age)

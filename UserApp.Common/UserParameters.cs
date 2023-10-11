@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace UserApp.Common;
 
 public class UserParameters

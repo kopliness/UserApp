@@ -3,6 +3,7 @@ using BusinessLayer.DTO;
 using DataLayer.EFCore;
 using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using UserApp.Common;
 using UserApp.Common.Extensions;
 using X.PagedList;
@@ -13,15 +14,19 @@ public class UserService : IUserService
 {
     private readonly UserAppDbContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<UserService> _logger;
 
-    public UserService(UserAppDbContext context, IMapper mapper)
+    public UserService(UserAppDbContext context, IMapper mapper, ILogger<UserService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<List<UserReadDto>> GetUsers(UserParameters userParameters)
     {
+        _logger.LogInformation("GetUsers method called with UserParameters");
+
         IQueryable<User> users = _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role);
@@ -39,7 +44,10 @@ public class UserService : IUserService
             users = users.Where(u => u.Age <= userParameters.AgeTo);
 
             if (userParameters.AgeTo < userParameters.AgeFrom)
+            {
+                _logger.LogError("AgeTo must be greater or equal than AgeFrom");
                 throw new AgeRangeException("AgeTo must be greater or equal than AgeFrom");
+            }
         }
 
         if (!string.IsNullOrEmpty(userParameters.Email))
@@ -67,15 +75,25 @@ public class UserService : IUserService
 
         var pagedUsers = (await users.ToPagedListAsync(userParameters.PageNumber, userParameters.PageSize)).ToList();
 
+        _logger.LogInformation("Returning users matching parameters");
+
         return _mapper.Map<List<UserReadDto>>(pagedUsers);
     }
 
     public async Task<UserReadDto> GetUser(Guid id)
     {
+        _logger.LogInformation("Getting user with ID: {id}", id);
+
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new NotFoundException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == id);
+
+        if (user == null)
+        {
+            _logger.LogError("User with ID: {id} does not exist.", id);
+            throw new NotFoundException("User with this ID does not exist.");
+        }
 
         var userDto = _mapper.Map<User, UserReadDto>(user);
 
@@ -88,18 +106,32 @@ public class UserService : IUserService
             .Distinct()
             .ToList();
 
+        _logger.LogInformation("Returning user with ID: {id}", id);
+
         return userDto;
     }
 
     public async Task AddRoleToUser(Guid userId, List<int> roleIds)
     {
+        _logger.LogInformation("AddRoleToUser method called with userId: {UserId} and roleIds: {RoleIds}", userId,
+            roleIds);
+
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new NotFoundException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user == null)
+        {
+            _logger.LogError("User with ID: {userId} does not exist.", userId);
+            throw new NotFoundException("User with this ID does not exist.");
+        }
 
         if (roleIds.Count == 0)
+        {
+            _logger.LogError("Role list is empty.");
             throw new IncorrectRolesException("Role list is empty.");
+        }
 
         var assignedRoleIds = user.UserRoles.Select(ur => ur.RoleId).ToList();
 
@@ -108,6 +140,7 @@ public class UserService : IUserService
         var distinctRoleIds = roleIds.Distinct().ToList();
         if (distinctRoleIds.Count != roleIds.Count)
         {
+            _logger.LogError("Role list contains duplicates.");
             throw new IncorrectRolesException("Role list contains duplicates.");
         }
 
@@ -115,37 +148,56 @@ public class UserService : IUserService
         if (existingRoles.Count != distinctRoleIds.Count)
         {
             var missingRoleId = distinctRoleIds.First(id => !existingRoles.Any(r => r.Id == id));
-            throw new IncorrectRolesException($"Role with ID {missingRoleId} does not exist.");
+            _logger.LogError("Role with ID {MissingRoleId} does not exist.", missingRoleId);
+            throw new NotFoundException($"Role with ID {missingRoleId} does not exist.");
         }
 
-        _context.UserRoles.AddRange(roleIds.Select(x=> new UserRole
+        _context.UserRoles.AddRange(roleIds.Select(x => new UserRole
         {
             UserId = userId,
             RoleId = x
         }));
 
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Roles {RoleIds} successfully added to user with ID {UserId}.", roleIds, userId);
     }
 
     public async Task DeleteRoleFromUser(Guid userId, List<int> roleIds)
     {
+        _logger.LogInformation("DeleteRoleFromUser method called with userId: {UserId} and roleIds: {RoleIds}", userId,
+            roleIds);
+
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId)?? throw new NotFoundException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user == null)
+        {
+            _logger.LogError("User with ID {UserId} does not exist.", userId);
+            throw new NotFoundException("User with this ID does not exist.");
+        }
 
         if (roleIds.Count == 0)
+        {
+            _logger.LogError("Role list is empty.");
             throw new IncorrectRolesException("Role list is empty.");
+        }
 
         var existingRoles = await _context.Roles.Where(r => roleIds.Contains(r.Id)).ToListAsync();
         if (existingRoles.Count != roleIds.Count)
         {
             var missingRoleId = roleIds.First(id => !existingRoles.Any(r => r.Id == id));
-            throw new IncorrectRolesException($"Role with ID {missingRoleId} does not exist.");
+            _logger.LogError("Role with ID {MissingRoleId} does not exist.", missingRoleId);
+            throw new NotFoundException($"Role with ID {missingRoleId} does not exist.");
         }
 
         if (user.UserRoles?.Any(ur => roleIds.Contains(ur.Role.Id)) == false)
+        {
+            _logger.LogError("User has no roles that match the given roles.");
             throw new IncorrectRolesException("User has no roles that match the given roles.");
+        }
 
         var rolesToRemove = user.UserRoles.Where(ur => ur.Role != null && roleIds.Contains(ur.Role.Id)).ToList();
 
@@ -153,15 +205,20 @@ public class UserService : IUserService
         {
             _context.UserRoles.RemoveRange(rolesToRemove);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Roles {RoleIds} successfully removed from user with ID {UserId}.", roleIds, userId);
         }
     }
 
-
     public async Task<UserCreateDto> CreateUser(UserCreateDto newUserCreateDto)
     {
+        _logger.LogInformation("CreateUser method called with user data: {NewUserData}", newUserCreateDto);
+
         var userExists = await _context.Users.AnyAsync(u => u.Email == newUserCreateDto.Email);
         if (userExists)
+        {
+            _logger.LogError("A user with this email already exists.");
             throw new UserExistsException("A user with this email already exists.");
+        }
 
         var user = _mapper.Map<UserCreateDto, User>(newUserCreateDto);
         _context.Users.Add(user);
@@ -171,35 +228,60 @@ public class UserService : IUserService
 
         await _context.SaveChangesAsync();
 
+        _logger.LogInformation("User with ID {UserId} was successfully created.", user.Id);
+
         return newUserCreateDto;
     }
 
     public async Task<UserCreateDto> UpdateUser(Guid id, UserCreateDto updatedUserCreateDto)
     {
+        _logger.LogInformation(
+            "UpdateUser method called with user ID: {UserId} and updated user data: {UpdatedUserData}", id,
+            updatedUserCreateDto);
+
         var user = await _context.Users
             .Include(u => u.UserRoles)
-            .FirstOrDefaultAsync(u => u.Id == id)?? throw new NotFoundException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == id);
+        if (user == null)
+        {
+            _logger.LogError("User with ID {id} does not exist.", id);
+            throw new NotFoundException("User with this ID does not exist.");
+        }
 
         user.Name = updatedUserCreateDto.Name;
         user.Email = updatedUserCreateDto.Email;
         user.Age = updatedUserCreateDto.Age;
 
-        _context.UserRoles.RemoveRange(user.UserRoles);
+        var existingUserWithSameEmail =
+            await _context.Users.FirstOrDefaultAsync(u => u.Email == updatedUserCreateDto.Email);
+        if (existingUserWithSameEmail != null && existingUserWithSameEmail.Id != id)
+        {
+            _logger.LogError("Email {Email} already belongs to another user.", updatedUserCreateDto.Email);
+            throw new UserExistsException("Email already belongs to another user.");
+        }
 
         await AddRoleToUser(user.Id, updatedUserCreateDto.Roles);
 
         await _context.SaveChangesAsync();
 
-        return updatedUserCreateDto;
-    }
+        _logger.LogInformation("User with ID {UserId} was successfully updated.", user.Id);
 
+        return _mapper.Map<UserCreateDto>(user);
+    }
 
     public async Task<UserReadDto> DeleteUser(Guid id)
     {
+        _logger.LogInformation("DeleteUser method called with user ID: {UserId}", id);
+
         var user = await _context.Users
             .Include(u => u.UserRoles)
             .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == id) ?? throw new NotFoundException("User with this ID does not exist.");
+            .FirstOrDefaultAsync(u => u.Id == id);
+        if (user == null)
+        {
+            _logger.LogError("User with ID {id} does not exist.", id);
+            throw new NotFoundException("User with this ID does not exist.");
+        }
 
         var userDto = _mapper.Map<User, UserReadDto>(user);
 
@@ -214,6 +296,8 @@ public class UserService : IUserService
 
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("User with ID {UserId} was successfully deleted.", user.Id);
 
         return userDto;
     }

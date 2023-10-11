@@ -40,7 +40,7 @@ public class ErrorExceptionHandling
         {
             await HandleExceptionAsync(context,
                 e.Message,
-                HttpStatusCode.Forbidden,
+                HttpStatusCode.BadRequest,
                 e.Message);
         }
         catch (AgeRangeException e)
@@ -55,7 +55,7 @@ public class ErrorExceptionHandling
         {
             Console.WriteLine(e.ToString());
 
-            _logger.LogError(e, "An unhandled exception occurred");
+            _logger.LogTrace(e.InnerException.ToString());
 
             await HandleExceptionAsync(context,
                 e.Message,

@@ -21,6 +21,7 @@
       <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
       <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
       <PackageReference Include="PagedList.NetCore" Version="1.0.6" />
+      <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
       <PackageReference Include="X.PagedList" Version="9.0.0-prerelease" />
       <PackageReference Include="X.PagedList.Mvc" Version="8.0.7" />
       <PackageReference Include="X.PagedList.Mvc.Core" Version="9.0.0-prerelease" />

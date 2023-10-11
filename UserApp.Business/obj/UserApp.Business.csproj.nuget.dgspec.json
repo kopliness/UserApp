@@ -79,6 +79,10 @@
               "target": "Package",
               "version": "[1.0.6, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "X.PagedList": {
               "target": "Package",
               "version": "[9.0.0-prerelease, )"
